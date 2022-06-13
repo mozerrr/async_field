@@ -45,7 +45,7 @@ class AsyncField<T> extends Equatable {
     StackTrace? stackTrace;
 
     if (needToCheck) {
-      final checkResult = await safeCheck(check!);
+      final checkResult = await safeCheck(check);
       if (checkResult.hasData) {
         passed = checkResult.data!;
       } else {
@@ -75,7 +75,7 @@ class AsyncField<T> extends Equatable {
           stackTrace: stackTrace,
         );
       } else {
-        return AsyncField.data(data!);
+        return AsyncField.data(data as T);
       }
     } else {
       return AsyncField.error(
@@ -101,7 +101,7 @@ class AsyncField<T> extends Equatable {
       );
     }
     if (hasData) {
-      return onData(data!);
+      return onData(data as T);
     }
     return onLoading();
   }
@@ -125,7 +125,7 @@ class AsyncField<T> extends Equatable {
       );
     }
     if (hasData && onData != null) {
-      return onData(data!);
+      return onData(data as T);
     }
     if (isLoading && onLoading != null) {
       return onLoading();
