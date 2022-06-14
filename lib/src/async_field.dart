@@ -140,14 +140,14 @@ class AsyncField<T> extends Equatable {
     return orElse();
   }
 
-  AsyncField copyWith({
+  AsyncField<T> copyWith({
     T? data,
     Exception? error,
     Exception? originalError,
     StackTrace? stackTrace,
     bool? isLoading,
   }) {
-    return AsyncField._(
+    return AsyncField<T>._(
       data: data ?? this.data,
       error: error ?? this.error,
       originalError: originalError ?? this.originalError,
