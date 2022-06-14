@@ -5,6 +5,14 @@ import 'error.dart';
 import 'safe_check.dart';
 
 class AsyncField<T> extends Equatable {
+  const AsyncField._({
+    this.data,
+    this.error,
+    this.originalError,
+    this.stackTrace,
+    this.isLoading = false,
+  });
+
   const AsyncField.data(T this.data)
       : error = null,
         stackTrace = null,
@@ -130,6 +138,22 @@ class AsyncField<T> extends Equatable {
       return onLoading();
     }
     return orElse();
+  }
+
+  AsyncField copyWith({
+    T? data,
+    Exception? error,
+    Exception? originalError,
+    StackTrace? stackTrace,
+    bool? isLoading,
+  }) {
+    return AsyncField._(
+      data: data ?? this.data,
+      error: error ?? this.error,
+      originalError: originalError ?? this.originalError,
+      stackTrace: stackTrace ?? this.stackTrace,
+      isLoading: isLoading ?? this.isLoading,
+    );
   }
 
   @override
