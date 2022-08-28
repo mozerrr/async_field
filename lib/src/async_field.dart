@@ -12,6 +12,13 @@ class AsyncField<T> extends Equatable {
     this.stackTrace,
     this.isLoading = false,
   });
+  
+  const AsyncField.empty() 
+      : data = null,
+        error = null,
+        stackTrace = null,
+        originalError = null,
+        isLoading = false;
 
   const AsyncField.data(T this.data)
       : error = null,
